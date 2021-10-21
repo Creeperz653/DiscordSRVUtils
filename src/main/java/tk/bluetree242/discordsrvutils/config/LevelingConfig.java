@@ -71,4 +71,10 @@ public interface LevelingConfig{
         @ConfDefault.DefaultString("message:level")
         String level_command_message();
 
+        @ConfKey("leveling-mode")
+        @ConfComments("#Leveling mode is the base of leveling. if DISCORD discord users will always level, if MINECRAFT it is the opposite. in both cased if linked they also levelup with the second account")
+        @AnnotationBasedSorter.Order(50)
+        @ConfDefault.DefaultString("MINECRAFT")
+        String leveling_mode();
+
 }

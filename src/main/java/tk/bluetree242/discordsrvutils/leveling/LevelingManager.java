@@ -39,6 +39,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class LevelingManager {
+    public boolean ready;
     public final Long MAP_EXPIRATION_NANOS = Duration.ofSeconds(60L).toNanos();
     public final Map<UUID, Long> antispamMap = new HashMap<>();
     private DiscordSRVUtils core = DiscordSRVUtils.get();
@@ -68,6 +69,10 @@ public class LevelingManager {
                throw new UnCheckedSQLException(e);
            }
         });
+    }
+
+    private void doMigration() {
+        //TODO:continue coding the migration
     }
 
     public PlayerStats getCachedStats(UUID uuid) {
@@ -182,5 +187,8 @@ public class LevelingManager {
             roles.add(core.getGuild().getRoleById(id));
         }
         return roles;
+    }
+    public boolean isReady() {
+        return ready;
     }
 }

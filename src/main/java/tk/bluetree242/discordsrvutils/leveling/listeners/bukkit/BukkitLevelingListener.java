@@ -53,6 +53,7 @@ public class BukkitLevelingListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent e) {
         core.executeAsync(() -> {
+            if (!LevelingManager.get().isReady()) return;
             try (Connection conn = core.getDatabase()) {
                 PreparedStatement p1 = conn.prepareStatement("SELECT * FROM leveling WHERE UUID=?");
                 p1.setString(1, e.getPlayer().getUniqueId().toString());

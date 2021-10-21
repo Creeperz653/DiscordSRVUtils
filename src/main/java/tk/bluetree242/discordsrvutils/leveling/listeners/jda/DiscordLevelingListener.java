@@ -43,6 +43,7 @@ public class DiscordLevelingListener extends ListenerAdapter {
     public void onGuildMessageReceived(GuildMessageReceivedEvent e) {
         if (core.getMainConfig().bungee_mode()) return;
         core.executeAsync(() -> {
+            if (!LevelingManager.get().isReady()) return;
             if (e.getMessage().isWebhookMessage()) return;
             if (e.getAuthor().isBot()) return;
             if (e.getGuild().getIdLong() == core.getGuild().getIdLong()) {
